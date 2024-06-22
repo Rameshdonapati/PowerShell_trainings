@@ -1,0 +1,16 @@
+﻿1. Get all running processes and save them to a variable called processes
+
+
+2. Write the contents of the processes variable to the pipeline  
+
+
+
+3. Pipe the processes variable to a text file
+
+
+
+
+4.For each process in your variable, take the workingset property and divide it by 1MB, displaying the result.
+
+
+

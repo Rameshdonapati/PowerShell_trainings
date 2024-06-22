@@ -1,0 +1,8 @@
+1. Configure the ISE to save the last 7 opened files
+
+2. Set the Intellisense timeout to 5 seconds
+
+3. Configure the console pane to have a black background. 
+
+
+

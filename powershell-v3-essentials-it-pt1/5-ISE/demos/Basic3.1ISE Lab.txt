@@ -1,0 +1,20 @@
+1. Configure the ISE to save the last 7 opened files
+
+Open the ISE from the prompt or shortcut
+go to: Tool - Options - General Settings
+At the bottom under Other Settings change "Number of recent files to show" to 7.
+Click OK
+
+2. Set the Intellisense timeout to 5 seconds
+
+In the same tab under Intellisense, set the value to 5.
+Click OK
+
+
+3. Configure the console pane to have a black background. 
+
+go to: Tool - Options - Colors and Fonts
+Under Console Pane select Background
+Click on the black square
+Click OK
+

@@ -1,0 +1,19 @@
+1. Run update help for your computer
+
+2. From your computer save help to a shared folder.
+
+3. Update help again from the shared folder for your computer or another computer.
+=============================
+1. Create a new PSDrive called TEMP that is mapped to the %TEMP% environmental variable
+
+2. Change to the new drive and recursively list all files and folders
+
+3. Using the registry find the value for ProductName under HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion
+=============================
+1. List currently loaded modules on your computer
+
+2. List all available modules on your computer
+
+3. List all the commands in the Microsoft.PowerShell.Utility module
+
+4. Import the Microsoft.PowerShell.Diagnostics module

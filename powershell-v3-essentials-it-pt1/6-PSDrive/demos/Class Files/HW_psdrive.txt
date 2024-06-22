@@ -1,0 +1,6 @@
+1. Create a new PSDrive called TEMP that is mapped to the %TEMP% environmental variable
+
+2. Change to the new drive and recursively list all files and folders
+
+
+3. Using the registry find the value for ProductName under HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion

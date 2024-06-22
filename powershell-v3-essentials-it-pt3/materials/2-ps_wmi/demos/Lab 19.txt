@@ -1,0 +1,8 @@
+#1. Get all instances of the Win32_Volume class on your computer.
+
+
+#2. Repeat step 1 but only fixed volumes and select its name, size, freespace and the filesystem. If you want, format the sizes in MB.
+
+#3. Get the Win32_OperatingSystem class and display the computername, the name of the operating system, when it was installed (in a friendly format), when it last booted (in a friendly format), a calculated property for the uptime and a property that indicates if it is 64 bit or not.
+
+#4. If you have remote computers you can query, repeat the previous steps using alternate credentials where possible. Include the computername in your output.

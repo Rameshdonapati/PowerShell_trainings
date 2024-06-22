@@ -1,0 +1,122 @@
+﻿<#
+.NOTES
+   Author      : Jim Moyle @jimmoyle
+   GitHub      : https://github.com/JimMoyle/GUIDemo
+    Version 0.0.1
+#>
+
+#Add in the frameworks so that we can create the WPF GUI
+Add-Type -AssemblyName presentationframework, presentationcore
+
+
+#Create empty hashtable into which we will place the GUI objects
+$wpf = @{ }
+
+
+#Grab the content of the Visual Studio xaml file as a string
+$inputXML = Get-Content -Path "C:\Users\ramsd\source\repos\WpfApp2\WpfApp2\MainWindow.xaml"
+
+Clear-Host
+$inputXML
+
+Clear-Host
+$firstItem = $inputXML | select-object -first 1
+$firstItem.gettype().Fullname
+
+
+#clean up xml there is syntax which Visual Studio 2015 creates which PoSH can't understand
+$inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
+
+Clear-Host
+$inputXMLClean
+
+
+#change string variable into xml
+[xml]$xaml = $inputXMLClean
+
+Clear-Host
+$xaml.GetType().Fullname
+
+
+#read xml data into xaml node reader object
+$reader = New-Object System.Xml.XmlNodeReader $xaml
+
+#create System.Windows.Window object
+$tempform = [Windows.Markup.XamlReader]::Load($reader)
+$tempform.GetType().Fullname
+
+#select each named node using an Xpath expression.
+$namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")
+
+
+#add all the named nodes as members to the $wpf variable, this also adds in the correct type for the objects.
+$namedNodes | ForEach-Object {
+
+	$wpf.Add($_.Name, $tempform.FindName($_.Name))
+
+}
+
+
+#show what's inside $wpf
+clear-Host
+$wpf
+
+Clear-Host
+$wpf.YouTubeButton.GetType().Fullname
+
+Clear-Host
+$wpf.YouTubeButton
+
+Clear-Host
+$wpf.YouTubeButton.Content
+
+Clear-Host
+$buttonEvents = $wpf.YouTubeButton | Get-Member | Where-Object {$_.MemberType -eq 'Event'}
+$buttonEvents.count
+
+
+$wpf.YouTubeWindow.ShowDialog() | Out-Null
+
+
+Add-Type -AssemblyName presentationframework, presentationcore
+$wpf = @{ }
+$inputXML = Get-Content -Path "C:\Users\ramsd\source\repos\WpfApp2\WpfApp2\MainWindow.xaml"
+$inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
+[xml]$xaml = $inputXMLClean
+$reader = New-Object System.Xml.XmlNodeReader $xaml
+$tempform = [Windows.Markup.XamlReader]::Load($reader)
+$namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")
+$namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
+
+
+#========================================================
+
+
+
+#========================================================
+#Your Code goes here
+#========================================================
+
+
+#This code runs when the button is clicked
+$wpf.submit.add_Click({
+
+        #Get screen name from textbox
+        $servers = $wpf.serverslist.text
+
+        foreach($server in $servers){
+        $disk = Get-WmiObject Win32_LogicalDisk -ComputerName $server -Filter "DeviceID='C:'" |
+        Select-Object Size,FreeSpace
+
+        #Show user image in GUI
+		$wpf.datagrid.source = $disk
+            }
+	})
+
+#=======================================================
+#End of Your Code
+#=======================================================
+
+
+
+$wpf.YouTubeWindow.ShowDialog() | Out-Null

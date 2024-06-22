@@ -1,0 +1,8 @@
+1. List currently loaded modules on your computer
+
+2. List all available modules on your computer
+
+3. List all the commands in the Microsoft.PowerShell.Utility module
+
+4. Import the Microsoft.PowerShell.Diagnostics module
+

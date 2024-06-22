@@ -1,0 +1,10 @@
+1. What is 23049564 in megabytes?
+
+2. Save numbers 1 through 10 as a variable. Test if 77 is in the variable. Then test if the variable contains 5.
+
+
+3. Split the string "alice|bob|carol|david"  on the |. (Hint this is normally a regular expression character)
+
+
+4. How do you think you would write a string of 40 asterisk (*) characters?
+
